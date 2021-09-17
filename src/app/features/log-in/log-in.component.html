@@ -1,0 +1,16 @@
+<div class="form">
+  <form [formGroup]="logInForm" #f>
+    <div class="element">
+      <label>Enter your email:</label>
+      <input type="emial" formControlName="email" name="email" />
+    </div>
+    <div class="element">
+      <label>Enter your password: </label>
+      <input type="password" formControlName="password" name="password" />
+    </div>
+    <div class="element">
+      <button type="submit" class="submit-btn">Log In</button>
+    </div>
+    <div class="element"><a routerLink="/singUp">Create account here!</a></div>
+  </form>
+</div>
