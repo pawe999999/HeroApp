@@ -6,10 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.scss'],
 })
-export class SingUpComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class SingUpComponent {
   singUpForm = new FormGroup({
     email: new FormControl(null, [
       Validators.required,

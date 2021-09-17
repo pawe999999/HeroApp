@@ -5,11 +5,11 @@ import { SingUpComponent } from './features/sing-up/sing-up.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'log-in',
     component: LogInComponent,
   },
-  { path: 'singUp', component: SingUpComponent },
-  { path: '**', redirectTo: '/' },
+  { path: 'sing-up', component: SingUpComponent },
+  { path: '**', redirectTo: '/log-in' },
 ];
 
 @NgModule({

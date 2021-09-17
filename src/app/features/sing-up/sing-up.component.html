@@ -1,8 +1,8 @@
 <div class="form">
-  <form [formGroup]="singUpForm" #f>
+  <form [formGroup]="singUpForm">
     <div class="element">
       <label>Enter your email:</label>
-      <input type="emial" formControlName="email" name="email" />
+      <input type="email" formControlName="email" name="email" />
     </div>
     <div class="element">
       <label>Enter your password: </label>
@@ -15,6 +15,6 @@
     <div class="element">
       <button type="submit" class="submit-btn">Create account!</button>
     </div>
-    <div class="element"><a routerLink="/">Log in here!</a></div>
+    <div class="element"><a routerLink="/log-in">Log in here!</a></div>
   </form>
 </div>
