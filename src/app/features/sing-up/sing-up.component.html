@@ -1,5 +1,5 @@
 <div class="form">
-  <form [formGroup]="singUpForm">
+  <form [formGroup]="singUpForm" (ngSubmit)="onSingUp()">
     <div class="element">
       <label>Enter your email:</label>
       <input type="email" formControlName="email" name="email" />
