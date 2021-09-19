@@ -28,7 +28,7 @@ export class SingUpComponent {
       //Validators.pattern('[a-zA-Z ]*'),
     ]),
   });
-  onSingUp() {
+  onSingUp(): void {
     // Check if user already exists
     for (let i = 0; i < localStorage.length; i++) {
       if (this.singUpForm.value.email === localStorage.key(i)) {

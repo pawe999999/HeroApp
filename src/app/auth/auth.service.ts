@@ -13,13 +13,12 @@ export class AuthService {
 
   singUp(user: UserInfo): void {
     localStorage.setItem(user.username, JSON.stringify(user));
-    console.log('asd');
   }
 
   logIn(user: UserInfo): void {
     localStorage.setItem('activeUser', JSON.stringify(user)); //create special key in LS for logged in user
-    this.autoLogIn();
     this.router.navigate(['/heroes']);
+    this.autoLogIn();
   }
   autoLogIn(): void {
     const activeUser: UserInfo = JSON.parse(
@@ -46,13 +45,13 @@ export class AuthService {
     }
   }
 
-  logout() {
+  logout(): void {
     this.router.navigate(['/log-in']);
     localStorage.removeItem('activeUser');
     this.user.next(null);
   }
 
-  autoLogout(expirationDuration: number) {
+  autoLogout(expirationDuration: number): void {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
     }, expirationDuration);
