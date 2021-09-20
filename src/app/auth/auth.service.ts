@@ -8,8 +8,7 @@ import { UserInfo } from '../models/userInfo.model';
 })
 export class AuthService {
   constructor(private router: Router) {}
-  user = new BehaviorSubject<any>(null);
-  tokenExpirationTimer: any;
+  user = new BehaviorSubject<UserInfo | null>(null);
 
   singUp(user: UserInfo): void {
     localStorage.setItem(user.username, JSON.stringify(user));
@@ -52,7 +51,7 @@ export class AuthService {
   }
 
   autoLogout(expirationDuration: number): void {
-    this.tokenExpirationTimer = setTimeout(() => {
+    setTimeout(() => {
       this.logout();
     }, expirationDuration);
   }
