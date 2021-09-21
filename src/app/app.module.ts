@@ -9,9 +9,10 @@ import { SingUpModule } from './features/sing-up/sing-up.module';
 import { NavModule } from './features/nav/nav.module';
 import { AuthService } from './auth/auth.service';
 import { HeroesComponent } from './features/heroes/heroes.component';
+import { HeroesModule } from './features/heroes/heroes.module';
 
 @NgModule({
-  declarations: [AppComponent, HeroesComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +20,7 @@ import { HeroesComponent } from './features/heroes/heroes.component';
     LogInModule,
     SingUpModule,
     NavModule,
+    HeroesModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

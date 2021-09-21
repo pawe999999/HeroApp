@@ -55,4 +55,12 @@ export class AuthService {
       this.logout();
     }, expirationDuration);
   }
+  checkIfUserExists(email: string): UserInfo | undefined {
+    for (let i = 0; i < localStorage.length; i++) {
+      if (email === localStorage.key(i)) {
+        return JSON.parse(localStorage.getItem(localStorage.key(i)!)!);
+      }
+    }
+    return;
+  }
 }

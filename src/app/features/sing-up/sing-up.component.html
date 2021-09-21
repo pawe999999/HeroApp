@@ -1,5 +1,5 @@
 <div class="form">
-  <form [formGroup]="singUpForm" (ngSubmit)="onSingUp()">
+  <form [formGroup]="singUpForm">
     <div class="element">
       <label>Enter your email:</label>
       <input type="email" formControlName="email" name="email" />
@@ -13,7 +13,9 @@
       <input type="username" formControlName="username" name="username" />
     </div>
     <div class="element">
-      <button type="submit" class="submit-btn">Create account!</button>
+      <button type="submit" (click)="onSingUp()" class="submit-btn">
+        Create account!
+      </button>
     </div>
     <div class="element"><a routerLink="/log-in">Log in here!</a></div>
   </form>
