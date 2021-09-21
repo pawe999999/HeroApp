@@ -9,7 +9,9 @@
       <input type="password" formControlName="password" name="password" />
     </div>
     <div class="element">
-      <button type="submit" class="submit-btn">Log In</button>
+      <button type="submit" (click)="onLogIn()" class="submit-btn">
+        Log In
+      </button>
     </div>
     <div class="element"><a routerLink="/sing-up">Create account here!</a></div>
   </form>

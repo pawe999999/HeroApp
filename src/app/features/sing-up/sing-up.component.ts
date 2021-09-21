@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
+import { UserInfo } from 'src/app/models/userInfo.model';
 
 @Component({
   selector: 'app-sing-up',
@@ -7,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sing-up.component.scss'],
 })
 export class SingUpComponent {
+  constructor(private authService: AuthService) {}
   singUpForm = new FormGroup({
     email: new FormControl(null, [
       Validators.required,
@@ -25,4 +28,24 @@ export class SingUpComponent {
       Validators.pattern('[a-zA-Z ]*'),
     ]),
   });
+  onSingUp(): void {
+    const user = this.authService.checkIfUserExists(
+      this.singUpForm.value.email
+    );
+    if (this.singUpForm.valid && !user) {
+      this.authService.singUp(
+        new UserInfo(
+          this.singUpForm.value.username,
+          this.singUpForm.value.email,
+          this.singUpForm.value.password,
+          `${crypto.getRandomValues(new Uint8Array(8)).join('')}`
+        )
+      );
+      alert('Account has been created');
+      this.singUpForm.reset();
+      return;
+    }
+    this.singUpForm.reset();
+    alert('User exisists');
+  }
 }
