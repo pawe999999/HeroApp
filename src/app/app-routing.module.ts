@@ -4,6 +4,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { HeroesComponent } from './features/heroes/heroes.component';
 import { LogInComponent } from './features/log-in/log-in.component';
 import { SingUpComponent } from './features/sing-up/sing-up.component';
+import { HeroResolve } from './shared/resolvers/heroes.resolver';
 
 const routes: Routes = [
   {
@@ -11,7 +12,12 @@ const routes: Routes = [
     component: LogInComponent,
   },
   { path: 'sing-up', component: SingUpComponent },
-  { path: 'heroes', component: HeroesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'heroes',
+    component: HeroesComponent,
+    canActivate: [AuthGuard],
+    resolve: [HeroResolve],
+  },
   { path: '**', redirectTo: '/log-in' },
 ];
 

@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.firstLetterSearch {
+    position: relative;
+    bottom: 10px;
+    right: 5px;
+    list-style: none;
+    padding: 5px;
+    background-color: burlywood;
+    border: 1px solid blue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+}
+.recentSearch {
+    cursor: pointer;
+}
+.popUp {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-color: burlywood;
+    left: 50%;
+    top: 10%;
+    overflow: scroll;
+}
+
+.containerHeroes {
+    margin: auto;
+    width: 70%;
+    overflow: scroll;
+    height: 600px;
+    padding: 5px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+}
+.lettersList {
+    margin-right: 10px;
+}
+.letter {
+    list-style: none;
+    padding: 5px;
+    background-color: burlywood;
+    border: 1px solid blue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.heroesList {
+    width: 100%;
+}

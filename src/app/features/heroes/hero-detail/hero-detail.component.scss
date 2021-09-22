@@ -1,0 +1,30 @@
+.container {
+    border: 1px solid black;
+    width: 100%;
+    padding: 0;
+}
+.head {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.innerBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    margin: 5px;
+}
+.start {
+    display: block;
+    margin: 5px;
+}
+
+.selectButton {
+    height: 50%;
+}

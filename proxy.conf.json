@@ -1,0 +1,52 @@
+{
+  "/heroes-data1": {
+    "target": "https://superheroapi.com/api/4509571742421677/1",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data1": ""
+    },
+    "changeOrigin": true
+  },
+
+  "/heroes-data2": {
+    "target": "https://superheroapi.com/api/4509571742421677/2",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data2": ""
+    },
+    "changeOrigin": true
+  },
+
+  "/heroes-data3": {
+    "target": "https://superheroapi.com/api/4509571742421677/3",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data3": ""
+    },
+    "changeOrigin": true
+  },
+  "/heroes-data4": {
+    "target": "https://superheroapi.com/api/4509571742421677/4",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data4": ""
+    },
+    "changeOrigin": true
+  },
+  "/heroes-data5": {
+    "target": "https://superheroapi.com/api/4509571742421677/5",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data5": ""
+    },
+    "changeOrigin": true
+  },
+  "/heroes-data6": {
+    "target": "https://superheroapi.com/api/4509571742421677/6",
+    "secure": true,
+    "pathRewrite": {
+      "^/heroes-data6": ""
+    },
+    "changeOrigin": true
+  }
+}
