@@ -1,21 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-export enum FilterOptions {
-    ALL,
-    TITLE,
-    FIRSTLETTER,
-}
-export interface FilterSettings {
-    filterType: FilterOptions;
-    filterValue?: string;
-}
+import { FilterSettings } from 'src/app/models/filterSettings.model';
+import { Hero } from 'src/app/models/hero.model';
+import { FilterOptions } from '../enums/filterOption.enum';
 
 @Injectable({ providedIn: 'root' })
 export class HeroesService {
-    private heroesStream = new BehaviorSubject<any[]>([]);
+    private heroesStream = new BehaviorSubject<Hero[]>([]);
 
     constructor(private http: HttpClient) {}
 
@@ -26,30 +18,20 @@ export class HeroesService {
         return this.filterStream.asObservable();
     }
 
-    get heroes$(): Observable<any[]> {
+    get heroes$(): Observable<Hero[]> {
         return this.heroesStream.asObservable();
     }
-    get heroes(): Object[] {
+    get heroes(): Hero[] {
         return this.heroesStream.getValue();
     }
     updateFilters(filtersSettings: FilterSettings): void {
         this.filterStream.next(filtersSettings);
     }
+    updateHeroes(items: any[]) {
+        this.heroesStream.next(items);
+    }
 
-    getHeroes(): void {
-        const arr: Object[] = [];
-        for (let i = 1; i < 7; i++) {
-            this.http
-                .get(`http://localhost:4200/heroes-data${i}`)
-                .pipe(
-                    map((hero: Object) => {
-                        arr.push(hero);
-                        return arr;
-                    })
-                )
-                .subscribe((res: Object[]) => {
-                    this.heroesStream.next(res);
-                });
-        }
+    getHeroes2(index: number): Observable<Hero> {
+        return this.http.get<Hero>(`http://localhost:4200/heroes-data${index}`);
     }
 }

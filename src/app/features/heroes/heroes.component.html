@@ -3,14 +3,13 @@
         <span class="firstLetterSearch">A</span>
     </div>
     <form [formGroup]="heroNameInput">
-        <div class="formInput" s>
+        <div class="formInput">
             <label>Find hero</label>
 
             <input
                 type="text"
                 class="input"
-                #inputTitle
-                (change)="onFilterTitle(inputTitle.value)"
+                (change)="onFilterTitle()"
                 formControlName="heroName"
             />
             <p class="recentSearch" (click)="showRecent()">Recent search</p>
