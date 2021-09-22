@@ -6,12 +6,8 @@
         <div class="formInput">
             <label>Find hero</label>
 
-            <input
-                type="text"
-                class="input"
-                (change)="onFilterTitle()"
-                formControlName="heroName"
-            />
+            <input type="text" class="input" formControlName="heroName" />
+
             <p class="recentSearch" (click)="showRecent()">Recent search</p>
             <div class="popUp" *ngIf="popUp">
                 <p

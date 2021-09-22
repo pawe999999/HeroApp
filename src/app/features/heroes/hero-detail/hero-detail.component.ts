@@ -7,14 +7,10 @@ import { HeroesModule } from '../heroes.module';
     templateUrl: './hero-detail.component.html',
     styleUrls: ['./hero-detail.component.scss'],
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent {
     @Input() hero!: Hero;
-    src!: string;
     selected: boolean = false;
 
-    ngOnInit() {
-        this.src = this.hero.image.url;
-    }
     onSelect() {
         this.selected = true;
     }

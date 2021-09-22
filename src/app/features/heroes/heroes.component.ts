@@ -6,6 +6,7 @@ import { Hero } from 'src/app/models/hero.model';
 import { FilterOptions } from 'src/app/shared/enums/filterOption.enum';
 import { Subscription } from 'rxjs';
 import { FilterSettings } from 'src/app/models/filterSettings.model';
+import { heroesUrlService } from 'src/app/shared/services/heroesUrl.service';
 
 @Component({
     selector: 'app-hero',
@@ -17,29 +18,17 @@ export class HeroesComponent implements OnInit, OnDestroy {
     heroNameInput!: FormGroup;
     popUp: boolean = false;
     items!: string[];
-    subscription!: Subscription;
     subscriptions: Subscription[] = [];
     alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
-
-    constructor(private heroesService: HeroesService) {}
+    private subscription: Subscription = new Subscription();
+    constructor(
+        private heroesService: HeroesService,
+        private heroesUrlService: heroesUrlService
+    ) {}
 
     ngOnInit() {
-        this.heroNameInput = new FormGroup({
-            heroName: new FormControl(
-                '',
-                Validators.pattern('^[-a-zA-Z]+(s+[-a-zA-Z])*$')
-            ),
-        });
-        if (this.heroesService.heroes.length === 0) {
-            let sub: Subscription;
-            for (let i = 1; i < 7; i++) {
-                sub = this.heroesService.getHeroes2(i).subscribe((res) => {
-                    this.heroes.push(res);
-                    this.heroesService.updateHeroes(this.heroes);
-                });
-                this.subscriptions.push(sub);
-            }
-        }
+        this.createForm();
+        this.checkHeroesList();
 
         this.subscription = this.heroesService.filters$
             .pipe(
@@ -59,7 +48,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
                                 }
                                 if (
                                     filters.filterType ===
-                                    FilterOptions.FIRSTLETTER
+                                    FilterOptions.FIRST_LETTER
                                 ) {
                                     return item.name.startsWith(
                                         filters.filterValue!
@@ -77,18 +66,11 @@ export class HeroesComponent implements OnInit, OnDestroy {
             });
     }
     ngOnDestroy(): void {
-        this.heroesService.updateFilters({
-            filterType: FilterOptions.ALL,
-        });
-
-        this.subscriptions.map((item) => {
-            return item.unsubscribe();
-        });
         this.subscription.unsubscribe();
     }
     onFilterByFirstLetter(letter: string): void {
         this.heroesService.updateFilters({
-            filterType: FilterOptions.FIRSTLETTER,
+            filterType: FilterOptions.FIRST_LETTER,
             filterValue: letter,
         });
     }
@@ -111,5 +93,30 @@ export class HeroesComponent implements OnInit, OnDestroy {
     selectRecent(index: number): void {
         this.popUp = !this.popUp;
         this.heroNameInput.get('heroName')?.setValue(this.items[index]);
+    }
+    checkHeroesList() {
+        if (this.heroesService.heroes.length === 0) {
+            let sub: Subscription;
+            for (const id of this.heroesService.heroesId) {
+                sub = this.heroesUrlService.getHeroes(id).subscribe((res) => {
+                    this.heroes.push(res);
+                    this.heroesService.updateHeroes(this.heroes);
+                });
+                this.subscription.add(sub);
+            }
+        }
+    }
+    createForm() {
+        this.heroNameInput = new FormGroup({
+            heroName: new FormControl(
+                '',
+                Validators.pattern('^[-a-zA-Z]+(s+[-a-zA-Z])*$')
+            ),
+        });
+        this.subscription.add(
+            this.heroNameInput.get('heroName')?.valueChanges.subscribe(() => {
+                this.onFilterTitle();
+            })
+        );
     }
 }

@@ -1,5 +1,5 @@
 export enum FilterOptions {
     ALL,
     TITLE,
-    FIRSTLETTER,
+    FIRST_LETTER,
 }

@@ -11,20 +11,21 @@ import { AuthService } from './auth/auth.service';
 import { HeroesModule } from './features/heroes/heroes.module';
 import { HeroesService } from './shared/services/heroes.service';
 import { HttpClientModule } from '@angular/common/http';
+import { heroesUrlService } from './shared/services/heroesUrl.service';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    LogInModule,
-    SingUpModule,
-    NavModule,
-    HeroesModule,
-  ],
-  providers: [AuthService, HeroesService],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        LogInModule,
+        SingUpModule,
+        NavModule,
+        HeroesModule,
+    ],
+    providers: [AuthService, HeroesService, heroesUrlService],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
