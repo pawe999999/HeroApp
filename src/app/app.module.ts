@@ -8,21 +8,24 @@ import { LogInModule } from './features/log-in/log-in.module';
 import { SingUpModule } from './features/sing-up/sing-up.module';
 import { NavModule } from './features/nav/nav.module';
 import { AuthService } from './auth/auth.service';
-import { HeroesComponent } from './features/heroes/heroes.component';
 import { HeroesModule } from './features/heroes/heroes.module';
+import { HeroesService } from './shared/services/heroes.service';
+import { HttpClientModule } from '@angular/common/http';
+import { heroesUrlService } from './shared/services/heroesUrl.service';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    LogInModule,
-    SingUpModule,
-    NavModule,
-    HeroesModule,
-  ],
-  providers: [AuthService],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        LogInModule,
+        SingUpModule,
+        NavModule,
+        HeroesModule,
+    ],
+    providers: [AuthService, HeroesService, heroesUrlService],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

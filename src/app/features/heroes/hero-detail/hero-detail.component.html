@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="head">
+        <h5>{{ hero.name }}</h5>
+    </div>
+    <div class="innerBody">
+        <div class="img-div">
+            <img [src]="hero.image.url" />
+        </div>
+
+        <div class="stats">
+            <div class="stat" *ngFor="let stat of hero.powerstats | keyvalue">
+                {{ stat.key }}: {{ stat.value }}
+            </div>
+        </div>
+        <button class="selectButton" [disabled]="selected" (click)="onSelect()">
+            Select
+        </button>
+    </div>
+</div>
+<hr />

@@ -1,1 +1,32 @@
-<p>heroes works!</p>
+<div class="container">
+    <div class="">
+        <span class="firstLetterSearch">A</span>
+    </div>
+    <form [formGroup]="heroNameInput">
+        <div class="formInput">
+            <label>Find hero</label>
+
+            <input type="text" class="input" formControlName="heroName" />
+
+            <p class="recentSearch" (click)="showRecent()">Recent search</p>
+            <div class="popUp" *ngIf="popUp">
+                <p
+                    *ngFor="let item of items; let i = index"
+                    (click)="selectRecent(i)"
+                >
+                    {{ item }}
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+<hr />
+<div class="containerHeroes">
+    <div class="heroesList">
+        <app-hero-detail
+            *ngFor="let hero of heroes"
+            [hero]="hero"
+        ></app-hero-detail>
+    </div>
+    <h2 *ngIf="heroes.length === 0">No hero found!</h2>
+</div>
