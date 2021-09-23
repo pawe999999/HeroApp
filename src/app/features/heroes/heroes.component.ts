@@ -31,8 +31,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.createForm();
         this.checkHeroesList();
-        console.log(this.searchLetter);
-
         this.subscription = this.heroesService.filters$
             .pipe(
                 switchMap((filters: FilterSettings) => {
