@@ -1,1 +1,63 @@
-<p>heroes-list works!</p>
+<ng-container *ngIf="!isHeroesSelected; else elseBlock">
+    <h2>No hero found</h2>
+</ng-container>
+<ng-template #elseTemplate> </ng-template>
+
+<ng-template #elseBlock>
+    <div *ngIf="isHeroesSelected" class="container">
+        <div class="carousel">
+            <span class="leftArrow" (click)="onLeftClick()"> < </span>
+
+            <div class="carouselWrapp">
+                <div class="carouselInner">
+                    <h3>{{ heroes[index].name }}</h3>
+                    <button (click)="selectThisHero()">Select this hero</button>
+                    <div>
+                        <img
+                            [src]="heroes[index].image.url"
+                            class="carouselInnerImage"
+                        />
+                    </div>
+                    <div class="statsContainer">
+                        <div
+                            class="statsCards"
+                            *ngFor="
+                                let item of heroes![index].powerstats | keyvalue
+                            "
+                        >
+                            <div class="statCard">
+                                <h4>{{ item.key }}</h4>
+                                <p>{{ item.value }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="rightArrow" (click)="onRightClick()"> > </span>
+        </div>
+        <hr />
+        <div class="selectedHeroWrap">
+            <div class="selectedHeroContainer">
+                <h2>Selected Hero</h2>
+                <img class="slectedHeroImg" [src]="selectedHero.image.url" />
+                <h3>{{ selectedHero.name }}</h3>
+                <div class="statsContainer">
+                    <div
+                        class="statsCards"
+                        *ngFor="
+                            let item of heroes![index].powerstats | keyvalue
+                        "
+                    >
+                        <div class="statCard">
+                            <h4>{{ item.key }}</h4>
+                            <p>{{ item.value }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="addHero">
+            <span routerLink="/heroes">+</span>
+        </div>
+    </div>
+</ng-template>
