@@ -3,20 +3,19 @@
         <h3>LOGO</h3>
     </div>
     <div class="element">
-        <ul>
+        <ng-container *ngIf="status; else elseBlock">
             <li class="contact">
-                <a routerLink="/log-in" *ngIf="!status">Log In</a>
+                <a routerLink="/log-in" (click)="logOut()">Log Out</a>
             </li>
             <li class="contact">
-                <a routerLink="/log-in" *ngIf="status" (click)="logOut()"
-                    >Log Out</a
-                >
+                <a routerLink="/user-info/heroes-list">User Info</a>
             </li>
+        </ng-container>
+
+        <ng-template #elseBlock>
             <li class="contact">
-                <a routerLink="/user-info/heroes-list" *ngIf="status"
-                    >User Info</a
-                >
+                <a routerLink="/log-in">Log In</a>
             </li>
-        </ul>
+        </ng-template>
     </div>
 </div>
