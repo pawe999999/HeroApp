@@ -1,6 +1,8 @@
 <div class="container">
     <div class="">
-        <span class="firstLetterSearch">A</span>
+        <span class="firstLetterSearch" (click)="openSearch()">{{
+            searchLetter
+        }}</span>
     </div>
     <form [formGroup]="heroNameInput">
         <div class="formInput">
@@ -29,4 +31,15 @@
         ></app-hero-detail>
     </div>
     <h2 *ngIf="heroes.length === 0">No hero found!</h2>
+    <div class="lettersList" *ngIf="searchByLetter">
+        <ul>
+            <li
+                class="letter"
+                (click)="onFilterByFirstLetter(item)"
+                *ngFor="let item of alphabet; trackBy: trackByIndex"
+            >
+                {{ item }}
+            </li>
+        </ul>
+    </div>
 </div>

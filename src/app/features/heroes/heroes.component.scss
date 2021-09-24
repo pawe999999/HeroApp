@@ -16,6 +16,11 @@
     border-radius: 50%;
     cursor: pointer;
 }
+.firstLetterSearch:hover,
+.letter:hover {
+    background-color: blue;
+    color: white;
+}
 
 .formInput {
     display: flex;

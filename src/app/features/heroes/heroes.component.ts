@@ -19,6 +19,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
     popUp: boolean = false;
     items!: string[];
     subscriptions: Subscription[] = [];
+    searchByLetter: boolean = false;
+    searchLetter: string = 'A';
     alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
     private subscription: Subscription = new Subscription();
     constructor(
@@ -29,7 +31,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.createForm();
         this.checkHeroesList();
-
         this.subscription = this.heroesService.filters$
             .pipe(
                 switchMap((filters: FilterSettings) => {
@@ -69,6 +70,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
     onFilterByFirstLetter(letter: string): void {
+        this.openSearch();
+        this.searchLetter = letter;
         this.heroesService.updateFilters({
             filterType: FilterOptions.FIRST_LETTER,
             filterValue: letter,
@@ -118,5 +121,11 @@ export class HeroesComponent implements OnInit, OnDestroy {
                 this.onFilterTitle();
             })
         );
+    }
+    openSearch() {
+        this.searchByLetter = !this.searchByLetter;
+    }
+    trackByIndex(_: number, letter: string): string {
+        return letter;
     }
 }
