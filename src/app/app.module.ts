@@ -12,6 +12,7 @@ import { HeroesModule } from './features/heroes/heroes.module';
 import { HeroesService } from './shared/services/heroes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { heroesUrlService } from './shared/services/heroesUrl.service';
+import { UserInfoModule } from './features/user-info/user-info.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { heroesUrlService } from './shared/services/heroesUrl.service';
         SingUpModule,
         NavModule,
         HeroesModule,
+        UserInfoModule,
     ],
     providers: [AuthService, HeroesService, heroesUrlService],
     bootstrap: [AppComponent],

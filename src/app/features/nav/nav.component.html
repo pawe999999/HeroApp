@@ -1,15 +1,22 @@
 <div class="nav">
-  <div class="element">
-    <h3>LOGO</h3>
-  </div>
-  <div class="element">
-    <ul>
-      <li class="contact">
-        <a routerLink="/log-in" *ngIf="!status">Log In</a>
-      </li>
-      <li class="contact">
-        <a routerLink="/log-in" *ngIf="status" (click)="logOut()">Log Out</a>
-      </li>
-    </ul>
-  </div>
+    <div class="element">
+        <h3>LOGO</h3>
+    </div>
+    <div class="element">
+        <ul>
+            <li class="contact">
+                <a routerLink="/log-in" *ngIf="!status">Log In</a>
+            </li>
+            <li class="contact">
+                <a routerLink="/log-in" *ngIf="status" (click)="logOut()"
+                    >Log Out</a
+                >
+            </li>
+            <li class="contact">
+                <a routerLink="/user-info/heroes-list" *ngIf="status"
+                    >User Info</a
+                >
+            </li>
+        </ul>
+    </div>
 </div>
