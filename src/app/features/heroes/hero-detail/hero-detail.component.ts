@@ -11,10 +11,10 @@ export class HeroDetailComponent implements OnInit {
     @Input() hero!: Hero;
     selected: boolean = false;
     constructor(private heroesService: HeroesService) {}
-    ngOnInit() {
+    ngOnInit(): void {
         this.checkSelection();
     }
-    checkSelection() {
+    checkSelection(): void {
         if (this.heroesService.selectedHeroes.includes(this.hero)) {
             this.selected = true;
         } else {
