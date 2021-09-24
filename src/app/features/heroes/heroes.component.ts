@@ -125,4 +125,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
     openSearch() {
         this.searchByLetter = !this.searchByLetter;
     }
+    trackByIndex(_: number, letter: string): string {
+        return letter;
+    }
 }

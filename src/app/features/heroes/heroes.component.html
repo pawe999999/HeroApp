@@ -35,8 +35,8 @@
         <ul>
             <li
                 class="letter"
-                (click)="onFilterByFirstLetter(alphabet[i])"
-                *ngFor="let item of alphabet; let i = index"
+                (click)="onFilterByFirstLetter(item)"
+                *ngFor="let item of alphabet; trackBy: trackByIndex"
             >
                 {{ item }}
             </li>
