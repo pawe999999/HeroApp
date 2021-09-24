@@ -8,7 +8,7 @@ import { FilterOptions } from '../enums/filterOption.enum';
 @Injectable({ providedIn: 'root' })
 export class HeroesService {
     private heroesStream = new BehaviorSubject<Hero[]>([]);
-    private seletedHeroes = new BehaviorSubject<Hero[]>([]);
+    private selectedHeroesStream = new BehaviorSubject<Hero[]>([]);
     heroesId = [
         1, 64, 152, 215, 243, 251, 281, 307, 343, 352, 378, 403, 418, 423, 487,
         498, 514, 534, 540, 573, 655, 680, 686, 705, 729,
@@ -20,10 +20,10 @@ export class HeroesService {
     });
 
     get selectedHeroes$(): Observable<Hero[]> {
-        return this.seletedHeroes.asObservable();
+        return this.selectedHeroesStream.asObservable();
     }
     get selectedHeroes(): Hero[] {
-        return this.seletedHeroes.getValue();
+        return this.selectedHeroesStream.getValue();
     }
 
     get filters$(): Observable<FilterSettings> {
@@ -43,6 +43,6 @@ export class HeroesService {
         this.heroesStream.next(items);
     }
     selectHero(hero: Hero): void {
-        this.seletedHeroes.next([...this.selectedHeroes, hero]);
+        this.selectedHeroesStream.next([...this.selectedHeroes, hero]);
     }
 }
