@@ -26,13 +26,13 @@ export class HeroesListComponent implements OnInit, OnDestroy {
             })
         );
     }
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
-    selectThisHero() {
+    selectThisHero(): void {
         this.selectedHero = this.heroes[this.index];
     }
-    deleteThisHero() {
+    deleteThisHero(): void {
         if (this.selectedHero.id === this.heroes[this.index].id) {
             this.heroesService.deleteSelectedHero(this.selectedHero);
         } else {
@@ -49,10 +49,10 @@ export class HeroesListComponent implements OnInit, OnDestroy {
         }
     }
     onRightClick(): void {
-        /*         if (this.heroes.length - 1 === this.index) {
+        if (this.heroes.length - 1 === this.index) {
             this.index = 0;
         } else {
             this.index++;
-        } */
+        }
     }
 }
