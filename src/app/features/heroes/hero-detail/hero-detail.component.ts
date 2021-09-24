@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from 'src/app/models/hero.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
-import { HeroesModule } from '../heroes.module';
 
 @Component({
     selector: 'app-hero-detail',
@@ -9,21 +8,27 @@ import { HeroesModule } from '../heroes.module';
     styleUrls: ['./hero-detail.component.scss'],
 })
 export class HeroDetailComponent implements OnInit {
-    constructor(private heroesService: HeroesService) {}
     @Input() hero!: Hero;
     selected: boolean = false;
-
+    constructor(private heroesService: HeroesService) {}
     ngOnInit() {
-        this.isSelected();
+        this.checkSelection();
     }
-    onSelect() {
-        this.selected = true;
-        this.heroesService.selectHero(this.hero);
-        this.isSelected();
-    }
-    isSelected() {
+    checkSelection() {
         if (this.heroesService.selectedHeroes.includes(this.hero)) {
             this.selected = true;
+        } else {
+            this.selected = false;
+        }
+    }
+
+    changeHeroSelection(): void {
+        if (this.heroesService.selectedHeroes.includes(this.hero)) {
+            this.heroesService.deleteSelectedHero(this.hero);
+            this.selected = false;
+        } else {
+            this.selected = true;
+            this.heroesService.selectHero(this.hero);
         }
     }
 }

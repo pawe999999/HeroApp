@@ -1,10 +1,9 @@
 <ng-container *ngIf="!isHeroesSelected; else elseBlock">
     <h2>No hero found</h2>
 </ng-container>
-<ng-template #elseTemplate> </ng-template>
 
 <ng-template #elseBlock>
-    <div *ngIf="isHeroesSelected" class="container">
+    <div class="container">
         <div class="carousel">
             <span class="leftArrow" (click)="onLeftClick()"> < </span>
 
@@ -12,6 +11,7 @@
                 <div class="carouselInner">
                     <h3>{{ heroes[index].name }}</h3>
                     <button (click)="selectThisHero()">Select this hero</button>
+                    <button (click)="deleteThisHero()">Delete this hero</button>
                     <div>
                         <img
                             [src]="heroes[index].image.url"
@@ -44,9 +44,7 @@
                 <div class="statsContainer">
                     <div
                         class="statsCards"
-                        *ngFor="
-                            let item of heroes![index].powerstats | keyvalue
-                        "
+                        *ngFor="let item of selectedHero.powerstats | keyvalue"
                     >
                         <div class="statCard">
                             <h4>{{ item.key }}</h4>

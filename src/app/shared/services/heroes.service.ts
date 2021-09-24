@@ -7,12 +7,14 @@ import { FilterOptions } from '../enums/filterOption.enum';
 
 @Injectable({ providedIn: 'root' })
 export class HeroesService {
-    private heroesStream = new BehaviorSubject<Hero[]>([]);
-    private selectedHeroesStream = new BehaviorSubject<Hero[]>([]);
     heroesId = [
         1, 64, 152, 215, 243, 251, 281, 307, 343, 352, 378, 403, 418, 423, 487,
         498, 514, 534, 540, 573, 655, 680, 686, 705, 729,
     ];
+
+    private heroesStream = new BehaviorSubject<Hero[]>([]);
+    private selectedHeroesStream = new BehaviorSubject<Hero[]>([]);
+
     constructor(private http: HttpClient) {}
 
     private filterStream = new BehaviorSubject<FilterSettings>({
@@ -44,5 +46,12 @@ export class HeroesService {
     }
     selectHero(hero: Hero): void {
         this.selectedHeroesStream.next([...this.selectedHeroes, hero]);
+    }
+    deleteSelectedHero(hero: Hero) {
+        this.selectedHeroesStream.next(
+            this.selectedHeroes.filter((item) => {
+                return hero.id !== item.id;
+            })
+        );
     }
 }
