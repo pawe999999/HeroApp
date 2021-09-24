@@ -1,0 +1,28 @@
+<div class="container" style="display: flex; flex-direction: column">
+    <div class="buttonsContainer">
+        <button
+            class="buttonHero"
+            routerLink="/user-info/heroes-list"
+            routerLinkActive="active"
+        >
+            Hero List
+        </button>
+        <button
+            class="buttonHero"
+            routerLink="/user-info/battle-history"
+            routerLinkActive="active"
+        >
+            History
+        </button>
+        <button
+            class="buttonHero"
+            routerLink="/user-info/power-ups"
+            routerLinkActive="active"
+        >
+            Power ups
+        </button>
+    </div>
+    <div class="">
+        <router-outlet></router-outlet>
+    </div>
+</div>

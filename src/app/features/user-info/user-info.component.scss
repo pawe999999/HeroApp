@@ -1,0 +1,22 @@
+.container {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+.buttonsContainer {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.buttonHero {
+    width: 200px;
+    padding: 10px;
+}
+.active {
+    background-color: blue;
+    font-size: 20px;
+}
