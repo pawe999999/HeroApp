@@ -21,7 +21,7 @@ export class HeroInfoComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subscription = this.route.params.subscribe((params: Params) => {
-            this.name = params['name'];
+            this.name = params?.name;
             this.hero = this.heroesService.getHero(this.name);
         });
     }
