@@ -23,19 +23,7 @@ export class BattleHistoryComponent implements OnInit, OnDestroy {
                 switchMap((sort: SortSettings) => {
                     return this.historyService.historyItems$.pipe(
                         map((items: HistoryInfo[]) => {
-                            if (sort.sortType === SortOptions.DATE) {
-                                return this.sortItems(items, 'date');
-                            }
-                            if (sort.sortType === SortOptions.HERO) {
-                                return this.sortItems(items, 'hero');
-                            }
-                            if (sort.sortType === SortOptions.OPPONENT) {
-                                return this.sortItems(items, 'opponent');
-                            }
-                            if (sort.sortType === SortOptions.RESULT) {
-                                return this.sortItems(items, 'result');
-                            }
-                            return items;
+                            return this.sortItems(items, sort.sortType);
                         })
                     );
                 })

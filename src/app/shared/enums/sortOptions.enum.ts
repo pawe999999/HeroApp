@@ -1,6 +1,6 @@
 export enum SortOptions {
-    HERO,
-    OPPONENT,
-    DATE,
-    RESULT,
+    HERO = 'hero',
+    OPPONENT = 'opponent',
+    DATE = 'date',
+    RESULT = 'result',
 }
