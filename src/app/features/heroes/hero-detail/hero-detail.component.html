@@ -12,16 +12,9 @@
                 {{ stat.key }}: {{ stat.value }}
             </div>
         </div>
-        <ng-container *ngIf="!selected; else elseTemplate">
-            <button class="selectButton" (click)="changeHeroSelection()">
-                Select
-            </button>
-        </ng-container>
-        <ng-template #elseTemplate>
-            <button class="selectButton" (click)="changeHeroSelection()">
-                Deselect
-            </button>
-        </ng-template>
+        <button class="selectButton" (click)="changeHeroSelection()">
+            {{ selected ? 'Deselect' : 'Select' }}
+        </button>
     </div>
 </div>
 <hr />

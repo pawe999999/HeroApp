@@ -49,8 +49,8 @@ export class HeroesService {
     }
     deleteSelectedHero(hero: Hero): void {
         this.selectedHeroesStream.next(
-            this.selectedHeroes.filter((item: Hero) => {
-                return hero.id !== item.id;
+            this.selectedHeroes.filter(({ id }: Hero) => {
+                return hero.id !== id;
             })
         );
     }

@@ -22,7 +22,7 @@ export class HeroesListComponent implements OnInit, OnDestroy {
             this.heroesService.selectedHeroes$.subscribe((res: Hero[]) => {
                 this.heroes = res;
                 this.selectedHero = this.heroes[this.heroes.length - 1];
-                this.isHeroesSelected = res.length === 0 ? false : true;
+                this.isHeroesSelected = res.length !== 0;
             })
         );
     }

@@ -8,18 +8,16 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
     styleUrls: ['./hero-detail.component.scss'],
 })
 export class HeroDetailComponent implements OnInit {
-    @Input() hero!: Hero;
     selected: boolean = false;
+    @Input() hero!: Hero;
+
     constructor(private heroesService: HeroesService) {}
+
     ngOnInit(): void {
         this.checkSelection();
     }
     checkSelection(): void {
-        if (this.heroesService.selectedHeroes.includes(this.hero)) {
-            this.selected = true;
-        } else {
-            this.selected = false;
-        }
+        this.selected = this.heroesService.selectedHeroes.includes(this.hero);
     }
 
     changeHeroSelection(): void {
