@@ -1,1 +1,20 @@
-<p>power-ups works!</p>
+<div class="container">
+    <div
+        class="element"
+        *ngFor="let item of items"
+        style="
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        "
+        [ngClass]="item.uses === 0 ? 'disabled' : ''"
+    >
+        <img [src]="item.img" width="60px" height="60px" />
+        <p>{{ item.name }}</p>
+        <p>{{ item.desc }}</p>
+        <p>{{ item.uses }}</p>
+        <button (click)="useItem(item)">Use it</button>
+    </div>
+</div>
