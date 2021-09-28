@@ -54,4 +54,9 @@ export class HeroesService {
             })
         );
     }
+    getHero(name: string): Hero | undefined {
+        return this.heroes.find((item) => {
+            return item.name === name;
+        });
+    }
 }
