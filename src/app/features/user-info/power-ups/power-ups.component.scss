@@ -2,12 +2,19 @@
     width: 800px;
     border: 1px solid black;
     border-radius: 10px;
+    margin: 50px;
 }
 .element {
     border: 1px solid black;
+    height: 100px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+}
+img {
+    width: 60px;
+    height: 60px;
 }
 .disabled {
     background-color: gray;

@@ -1,17 +1,10 @@
 <div class="container">
     <div
         class="element"
-        *ngFor="let item of items"
-        style="
-            height: 100px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-        "
+        *ngFor="let item of powerUps"
         [ngClass]="item.uses === 0 ? 'disabled' : ''"
     >
-        <img [src]="item.img" width="60px" height="60px" />
+        <img [src]="item.img" />
         <p>{{ item.name }}</p>
         <p>{{ item.desc }}</p>
         <p>{{ item.uses }}</p>

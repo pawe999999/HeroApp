@@ -9,13 +9,13 @@ import { PowerUpsService } from 'src/app/shared/services/powerUps.service';
     styleUrls: ['./power-ups.component.scss'],
 })
 export class PowerUpsComponent implements OnInit, OnDestroy {
-    items!: PowerUps[];
+    powerUps!: PowerUps[];
     private subscription!: Subscription;
 
     constructor(private powerUpsService: PowerUpsService) {}
     ngOnInit(): void {
         this.subscription = this.powerUpsService.powerUps$.subscribe((res) => {
-            this.items = res.sort((a, b) => {
+            this.powerUps = res.sort((a, b) => {
                 if (a.uses < b.uses) {
                     return 1;
                 }
@@ -29,10 +29,10 @@ export class PowerUpsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
-    useItem(item: PowerUps): void {
-        if (item.uses > 0) {
-            item.uses--;
-            this.powerUpsService.updatePowerUps(this.items);
+    useItem({ uses }: PowerUps): void {
+        if (uses > 0) {
+            uses--;
+            this.powerUpsService.updatePowerUps(this.powerUps);
         }
     }
 }
