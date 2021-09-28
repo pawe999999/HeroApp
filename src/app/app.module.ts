@@ -15,6 +15,7 @@ import { heroesUrlService } from './shared/services/heroesUrl.service';
 import { UserInfoModule } from './features/user-info/user-info.module';
 import { HistoryService } from './shared/services/history.service';
 import { PowerUpsService } from './shared/services/powerUps.service';
+import { HeroInfoModule } from './features/hero-info/hero-info.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { PowerUpsService } from './shared/services/powerUps.service';
         NavModule,
         HeroesModule,
         UserInfoModule,
+        HeroInfoModule,
     ],
     providers: [
         AuthService,

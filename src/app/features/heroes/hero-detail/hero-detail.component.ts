@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hero } from 'src/app/models/hero.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 
@@ -11,7 +12,7 @@ export class HeroDetailComponent implements OnInit {
     selected: boolean = false;
     @Input() hero!: Hero;
 
-    constructor(private heroesService: HeroesService) {}
+    constructor(private heroesService: HeroesService, private router: Router) {}
 
     ngOnInit(): void {
         this.checkSelection();
@@ -28,5 +29,8 @@ export class HeroDetailComponent implements OnInit {
             this.selected = true;
             this.heroesService.selectHero(this.hero);
         }
+    }
+    viewHero() {
+        this.router.navigate([`/hero/${this.hero.name}`]);
     }
 }

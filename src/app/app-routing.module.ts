@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { HeroInfoComponent } from './features/hero-info/hero-info.component';
 import { HeroesComponent } from './features/heroes/heroes.component';
 import { LogInComponent } from './features/log-in/log-in.component';
 import { SingUpComponent } from './features/sing-up/sing-up.component';
@@ -15,6 +16,8 @@ const routes: Routes = [
         component: LogInComponent,
     },
     { path: 'sing-up', component: SingUpComponent },
+    { path: 'hero/:name', component: HeroInfoComponent },
+
     {
         path: 'heroes',
         component: HeroesComponent,
