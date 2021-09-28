@@ -30,7 +30,7 @@ export class HeroDetailComponent implements OnInit {
             this.heroesService.selectHero(this.hero);
         }
     }
-    viewHero() {
+    viewHero(): void {
         this.router.navigate([`/hero/${this.hero.name}`]);
     }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Hero } from 'src/app/models/hero.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 
@@ -8,9 +9,10 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
     templateUrl: './hero-info.component.html',
     styleUrls: ['./hero-info.component.scss'],
 })
-export class HeroInfoComponent implements OnInit {
+export class HeroInfoComponent implements OnInit, OnDestroy {
     name!: string;
     hero!: Hero | undefined;
+    private subscription!: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -18,9 +20,12 @@ export class HeroInfoComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.route.params.subscribe((params: Params) => {
+        this.subscription = this.route.params.subscribe((params: Params) => {
             this.name = params['name'];
             this.hero = this.heroesService.getHero(this.name);
         });
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }
