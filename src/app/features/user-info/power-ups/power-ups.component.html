@@ -1,1 +1,13 @@
-<p>power-ups works!</p>
+<div class="container">
+    <div
+        class="element"
+        *ngFor="let item of powerUps"
+        [class.disabled]="item.uses === 0"
+    >
+        <img [src]="item.img" />
+        <p>{{ item.name }}</p>
+        <p>{{ item.desc }}</p>
+        <p>{{ item.uses }}</p>
+        <button (click)="useItem(item)">Use it</button>
+    </div>
+</div>
