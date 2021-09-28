@@ -1,17 +1,32 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from 'src/app/models/hero.model';
-import { HeroesModule } from '../heroes.module';
+import { HeroesService } from 'src/app/shared/services/heroes.service';
 
 @Component({
     selector: 'app-hero-detail',
     templateUrl: './hero-detail.component.html',
     styleUrls: ['./hero-detail.component.scss'],
 })
-export class HeroDetailComponent {
-    @Input() hero!: Hero;
+export class HeroDetailComponent implements OnInit {
     selected: boolean = false;
+    @Input() hero!: Hero;
 
-    onSelect() {
-        this.selected = true;
+    constructor(private heroesService: HeroesService) {}
+
+    ngOnInit(): void {
+        this.checkSelection();
+    }
+    checkSelection(): void {
+        this.selected = this.heroesService.selectedHeroes.includes(this.hero);
+    }
+
+    changeHeroSelection(): void {
+        if (this.heroesService.selectedHeroes.includes(this.hero)) {
+            this.heroesService.deleteSelectedHero(this.hero);
+            this.selected = false;
+        } else {
+            this.selected = true;
+            this.heroesService.selectHero(this.hero);
+        }
     }
 }

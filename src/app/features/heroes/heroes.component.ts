@@ -97,7 +97,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
         this.popUp = !this.popUp;
         this.heroNameInput.get('heroName')?.setValue(this.items[index]);
     }
-    checkHeroesList() {
+    checkHeroesList(): void {
         if (this.heroesService.heroes.length === 0) {
             let sub: Subscription;
             for (const id of this.heroesService.heroesId) {
@@ -109,7 +109,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
             }
         }
     }
-    createForm() {
+    createForm(): void {
         this.heroNameInput = new FormGroup({
             heroName: new FormControl(
                 '',
@@ -122,7 +122,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
             })
         );
     }
-    openSearch() {
+    openSearch(): void {
         this.searchByLetter = !this.searchByLetter;
     }
     trackByIndex(_: number, letter: string): string {

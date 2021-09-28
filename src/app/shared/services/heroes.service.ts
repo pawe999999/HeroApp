@@ -7,16 +7,27 @@ import { FilterOptions } from '../enums/filterOption.enum';
 
 @Injectable({ providedIn: 'root' })
 export class HeroesService {
-    private heroesStream = new BehaviorSubject<Hero[]>([]);
     heroesId = [
         1, 64, 152, 215, 243, 251, 281, 307, 343, 352, 378, 403, 418, 423, 487,
         498, 514, 534, 540, 573, 655, 680, 686, 705, 729,
     ];
+
+    private heroesStream = new BehaviorSubject<Hero[]>([]);
+    private selectedHeroesStream = new BehaviorSubject<Hero[]>([]);
+
     constructor(private http: HttpClient) {}
 
     private filterStream = new BehaviorSubject<FilterSettings>({
         filterType: FilterOptions.ALL,
     });
+
+    get selectedHeroes$(): Observable<Hero[]> {
+        return this.selectedHeroesStream.asObservable();
+    }
+    get selectedHeroes(): Hero[] {
+        return this.selectedHeroesStream.getValue();
+    }
+
     get filters$(): Observable<FilterSettings> {
         return this.filterStream.asObservable();
     }
@@ -30,7 +41,17 @@ export class HeroesService {
     updateFilters(filtersSettings: FilterSettings): void {
         this.filterStream.next(filtersSettings);
     }
-    updateHeroes(items: Hero[]) {
+    updateHeroes(items: Hero[]): void {
         this.heroesStream.next(items);
+    }
+    selectHero(hero: Hero): void {
+        this.selectedHeroesStream.next([...this.selectedHeroes, hero]);
+    }
+    deleteSelectedHero(hero: Hero): void {
+        this.selectedHeroesStream.next(
+            this.selectedHeroes.filter(({ id }: Hero) => {
+                return hero.id !== id;
+            })
+        );
     }
 }

@@ -12,8 +12,8 @@
                 {{ stat.key }}: {{ stat.value }}
             </div>
         </div>
-        <button class="selectButton" [disabled]="selected" (click)="onSelect()">
-            Select
+        <button class="selectButton" (click)="changeHeroSelection()">
+            {{ selected ? 'Deselect' : 'Select' }}
         </button>
     </div>
 </div>
