@@ -13,6 +13,7 @@ import { HeroesService } from './shared/services/heroes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { heroesUrlService } from './shared/services/heroesUrl.service';
 import { UserInfoModule } from './features/user-info/user-info.module';
+import { HistoryService } from './shared/services/history.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,7 +28,7 @@ import { UserInfoModule } from './features/user-info/user-info.module';
         HeroesModule,
         UserInfoModule,
     ],
-    providers: [AuthService, HeroesService, heroesUrlService],
+    providers: [AuthService, HeroesService, heroesUrlService, HistoryService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
