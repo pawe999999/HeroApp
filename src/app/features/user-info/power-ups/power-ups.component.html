@@ -2,7 +2,7 @@
     <div
         class="element"
         *ngFor="let item of powerUps"
-        [ngClass]="item.uses === 0 ? 'disabled' : ''"
+        [class.disabled]="item.uses === 0"
     >
         <img [src]="item.img" />
         <p>{{ item.name }}</p>
