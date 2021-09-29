@@ -18,7 +18,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     result!: string;
     showResult: boolean = false;
     durration: number | null = 5;
-    powerUpsStats!: number;
+    powerUpsStats: number = 0;
     private subscription: Subscription = new Subscription();
     constructor(
         private heroesService: HeroesService,
@@ -73,7 +73,7 @@ export class BattleComponent implements OnInit, OnDestroy {
         for (const [_, value] of Object.entries(this.opponentHero.powerstats)) {
             opponentHeroPower = +opponentHeroPower + +value;
         }
-
+        selectedHeroPower = selectedHeroPower + this.powerUpsStats;
         return selectedHeroPower > opponentHeroPower ? 'Win' : 'Lose';
     }
     setBattleData() {
