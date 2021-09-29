@@ -2,6 +2,9 @@
     <div class="element">
         <h3>LOGO</h3>
     </div>
+    <div *ngIf="heroesStatus" class="element fight">
+        <a routerLink="/battle">Fight!</a>
+    </div>
     <div class="element">
         <ng-container *ngIf="status; else elseBlock">
             <li class="contact">
