@@ -19,6 +19,8 @@ export class BattleComponent implements OnInit, OnDestroy {
     showResult: boolean = false;
     durration: number | null = 5;
     powerUpsStats: number = 0;
+    usePowerup: boolean = false;
+    powerUpItem!: PowerUps;
     private subscription: Subscription = new Subscription();
     constructor(
         private heroesService: HeroesService,
@@ -54,12 +56,8 @@ export class BattleComponent implements OnInit, OnDestroy {
         });
     }
     usePowerUp(item: PowerUps): void {
-        if (item.uses > 0) {
-            item.uses--;
-            this.powerUpsStats += item.stats.statAdded;
-
-            this.powerUpsService.updatePowerUps(this.powerUps);
-        }
+        this.usePowerup = true;
+        this.powerUpItem = item;
     }
 
     showResultWindow() {
@@ -68,13 +66,28 @@ export class BattleComponent implements OnInit, OnDestroy {
     checkResult() {
         let selectedHeroPower: number = 0;
         let opponentHeroPower: number = 0;
-        for (const [_, value] of Object.entries(this.selectedHero.powerstats)) {
-            selectedHeroPower += +value;
+
+        selectedHeroPower = Object.values(this.selectedHero.powerstats)
+            .map((item) => {
+                return +item;
+            })
+            .reduce((a, b) => {
+                return a + b;
+            });
+
+        opponentHeroPower = Object.values(this.opponentHero.powerstats)
+            .map((item) => {
+                return +item;
+            })
+            .reduce((a, b) => {
+                return a + b;
+            });
+
+        if (this.usePowerup) {
+            selectedHeroPower += this.powerUpItem.stats.statAdded;
+            this.powerUpItem.uses--;
+            this.powerUpsService.updatePowerUps(this.powerUps);
         }
-        for (const [_, value] of Object.entries(this.opponentHero.powerstats)) {
-            opponentHeroPower += +value;
-        }
-        selectedHeroPower += this.powerUpsStats;
 
         return selectedHeroPower > opponentHeroPower ? 'Win' : 'Lose';
     }
