@@ -25,8 +25,9 @@
 <hr />
 
 <div class="containerHeroes">
-    <div class="results">Results {{ heroes.length }}</div>
     <div class="heroesList">
+        <div class="results">Results {{ heroes.length }}</div>
+
         <app-hero-detail
             *ngFor="let hero of heroes"
             [hero]="hero"
