@@ -56,7 +56,8 @@ export class BattleComponent implements OnInit, OnDestroy {
     usePowerUp(item: PowerUps): void {
         if (item.uses > 0) {
             item.uses--;
-            this.powerUpsStats = this.powerUpsStats + item.stats.statAdded;
+            this.powerUpsStats += item.stats.statAdded;
+
             this.powerUpsService.updatePowerUps(this.powerUps);
         }
     }
@@ -68,12 +69,13 @@ export class BattleComponent implements OnInit, OnDestroy {
         let selectedHeroPower: number = 0;
         let opponentHeroPower: number = 0;
         for (const [_, value] of Object.entries(this.selectedHero.powerstats)) {
-            selectedHeroPower = +selectedHeroPower + +value;
+            selectedHeroPower += +value;
         }
         for (const [_, value] of Object.entries(this.opponentHero.powerstats)) {
-            opponentHeroPower = +opponentHeroPower + +value;
+            opponentHeroPower += +value;
         }
-        selectedHeroPower = selectedHeroPower + this.powerUpsStats;
+        selectedHeroPower += this.powerUpsStats;
+
         return selectedHeroPower > opponentHeroPower ? 'Win' : 'Lose';
     }
     setBattleData() {
