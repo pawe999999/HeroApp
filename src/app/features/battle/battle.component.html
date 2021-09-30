@@ -21,11 +21,12 @@
         <h2 class="start" (click)="startBattle()">START</h2>
         <h3>{{ opponentHero.name }}</h3>
         <div class="power-ups-container">
-            <div class="power-ups" *ngFor="let item of powerUps">
+            <div class="power-ups" *ngFor="let item of powerUps; let i = index">
                 <div
                     *ngIf="item.uses"
                     class="power-up"
-                    (click)="usePowerUp(item)"
+                    (click)="usePowerUp(item, i)"
+                    [class.active]="powerIndex === i"
                 >
                     <img [src]="item.img" class="powerUp-item" />
                     <p>{{ item.uses }}</p>

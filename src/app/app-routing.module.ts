@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthBattleGurad } from './auth/battleAuth.gurad';
 import { BattleComponent } from './features/battle/battle.component';
 import { HeroInfoComponent } from './features/hero-info/hero-info.component';
 import { HeroesComponent } from './features/heroes/heroes.component';
@@ -24,7 +25,11 @@ const routes: Routes = [
         component: HeroesComponent,
         canActivate: [AuthGuard],
     },
-    { path: 'battle', component: BattleComponent },
+    {
+        path: 'battle',
+        component: BattleComponent,
+        canActivate: [AuthBattleGurad],
+    },
 
     {
         path: 'user-info',
@@ -45,7 +50,7 @@ const routes: Routes = [
             },
         ],
     },
-    { path: '**', redirectTo: '/log-in' },
+    { path: '**', redirectTo: '/heroes' },
 ];
 
 @NgModule({

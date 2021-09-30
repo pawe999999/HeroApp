@@ -4,9 +4,12 @@
         *ngFor="let item of powerUps"
         [class.disabled]="item.uses === 0"
     >
-        <img [src]="item.img" />
-        <p>{{ item.name }}</p>
-        <p>{{ item.desc }}</p>
-        <p>{{ item.uses }}</p>
+        <div class="power-element">
+            <img [src]="item.img" />
+        </div>
+
+        <p class="power-element">{{ item.name }}</p>
+        <p class="power-element">{{ item.desc }}</p>
+        <p class="power-element">{{ item.uses }}</p>
     </div>
 </div>

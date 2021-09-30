@@ -1,9 +1,9 @@
 <div class="nav">
     <div class="element">
-        <h3>LOGO</h3>
+        <h3 class="logo" routerLink="/heroes">LOGO</h3>
     </div>
     <div *ngIf="heroesStatus" class="element fight">
-        <a routerLink="/battle">Fight!</a>
+        <a routerLink="/battle" class="fight">Fight!</a>
     </div>
     <div class="element">
         <ng-container *ngIf="status; else elseBlock">

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
 import { Hero } from 'src/app/models/hero.model';
 import { PowerUps } from 'src/app/models/powerUps.model';
@@ -21,11 +22,13 @@ export class BattleComponent implements OnInit, OnDestroy {
     powerUpsStats: number = 0;
     usePowerup: boolean = false;
     powerUpItem!: PowerUps;
+    powerIndex!: number;
     private subscription: Subscription = new Subscription();
     constructor(
         private heroesService: HeroesService,
         private powerUpsService: PowerUpsService,
-        private historyService: HistoryService
+        private historyService: HistoryService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -55,9 +58,10 @@ export class BattleComponent implements OnInit, OnDestroy {
             }
         });
     }
-    usePowerUp(item: PowerUps): void {
+    usePowerUp(item: PowerUps, i: number): void {
         this.usePowerup = true;
         this.powerUpItem = item;
+        this.powerIndex = i;
     }
 
     showResultWindow() {
@@ -101,5 +105,8 @@ export class BattleComponent implements OnInit, OnDestroy {
             result: this.result,
             id: Math.floor(Math.random() * 10000) + 1,
         });
+        setTimeout(() => {
+            this.router.navigate(['/heroes']);
+        }, 2000);
     }
 }
