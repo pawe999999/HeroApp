@@ -29,10 +29,4 @@ export class PowerUpsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
-    useItem({ uses }: PowerUps): void {
-        if (uses > 0) {
-            uses--;
-            this.powerUpsService.updatePowerUps(this.powerUps);
-        }
-    }
 }

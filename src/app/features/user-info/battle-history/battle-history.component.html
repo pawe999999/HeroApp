@@ -6,6 +6,6 @@
     <div class="element" *ngFor="let item of historyItems">
         <p>{{ item.hero }} vs {{ item.opponent }}</p>
         <p>{{ item.result }}</p>
-        <p>{{ item.date }}</p>
+        <p>{{ item.date | date: 'short' }}</p>
     </div>
 </div>

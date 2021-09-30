@@ -2,6 +2,7 @@
     width: 800px;
     border: 1px solid black;
     border-radius: 10px;
+    margin: 20px;
 }
 .carousel {
     display: flex;
@@ -73,4 +74,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+button {
+    width: 150px;
+    margin: 15px;
 }

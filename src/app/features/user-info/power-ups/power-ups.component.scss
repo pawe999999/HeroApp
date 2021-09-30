@@ -12,11 +12,16 @@
     align-items: center;
     justify-content: space-around;
 }
-img {
-    width: 60px;
-    height: 60px;
-}
+
 .disabled {
     background-color: gray;
     pointer-events: none;
+}
+.power-element {
+    width: 200px;
+    text-align: center;
+}
+img {
+    width: 60px;
+    height: 60px;
 }

@@ -23,7 +23,9 @@
     </form>
 </div>
 <hr />
+
 <div class="containerHeroes">
+    <div class="results">Results {{ heroes.length }}</div>
     <div class="heroesList">
         <app-hero-detail
             *ngFor="let hero of heroes"
