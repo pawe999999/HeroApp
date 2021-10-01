@@ -29,4 +29,7 @@ export class PowerUpsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
+    trackByIndex(_: number, item: PowerUps) {
+        return item;
+    }
 }

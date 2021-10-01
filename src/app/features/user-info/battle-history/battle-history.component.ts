@@ -69,4 +69,7 @@ export class BattleHistoryComponent implements OnInit, OnDestroy {
             sortType: SortOptions.RESULT,
         });
     }
+    trackByIndex(_: number, item: HistoryInfo) {
+        return item;
+    }
 }

@@ -1,7 +1,7 @@
 <div class="container">
     <div
         class="element"
-        *ngFor="let item of powerUps"
+        *ngFor="let item of powerUps; trackBy: trackByIndex"
         [class.disabled]="item.uses === 0"
     >
         <div class="power-element">

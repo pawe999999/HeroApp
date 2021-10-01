@@ -51,7 +51,11 @@
     padding: 20px;
 }
 .lettersList {
-    margin-right: 10px;
+    margin: auto;
+    top: 100px;
+    right: 60%;
+    position: absolute;
+    background-color: white;
 }
 .letter {
     list-style: none;

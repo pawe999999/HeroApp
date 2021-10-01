@@ -128,4 +128,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
     trackByIndex(_: number, letter: string): string {
         return letter;
     }
+    trackByHero(_: number, hero: Hero) {
+        return hero.id;
+    }
 }

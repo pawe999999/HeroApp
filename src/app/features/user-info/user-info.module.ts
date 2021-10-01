@@ -5,6 +5,7 @@ import { UserInfoComponent } from './user-info.component';
 import { HeroesListComponent } from './heroes-list/heroes-list.component';
 import { PowerUpsComponent } from './power-ups/power-ups.component';
 import { BattleHistoryComponent } from './battle-history/battle-history.component';
+import { UserInfoRoutingModule } from './user-info.routing.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,7 @@ import { BattleHistoryComponent } from './battle-history/battle-history.componen
         PowerUpsComponent,
         BattleHistoryComponent,
     ],
-    imports: [RouterModule, CommonModule],
+    imports: [RouterModule, CommonModule, UserInfoRoutingModule],
     exports: [
         UserInfoComponent,
         HeroesListComponent,
