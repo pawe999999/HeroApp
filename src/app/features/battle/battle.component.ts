@@ -1,6 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, timer } from 'rxjs';
+import { BehaviorSubject, Subscription, timer } from 'rxjs';
 import { Hero } from 'src/app/models/hero.model';
 import { PowerUps } from 'src/app/models/powerUps.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -11,13 +17,14 @@ import { PowerUpsService } from 'src/app/shared/services/powerUps.service';
     selector: 'app-battle',
     templateUrl: './battle.component.html',
     styleUrls: ['./battle.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BattleComponent implements OnInit, OnDestroy {
+    res$: any = new BehaviorSubject<boolean>(false);
     selectedHero!: Hero;
     opponentHero!: Hero;
     powerUps!: PowerUps[];
     result!: string;
-    showResult: boolean = false;
     durration: number | null = 5;
     powerUpsStats: number = 0;
     usePowerup: boolean = false;
@@ -28,7 +35,8 @@ export class BattleComponent implements OnInit, OnDestroy {
         private heroesService: HeroesService,
         private powerUpsService: PowerUpsService,
         private historyService: HistoryService,
-        private router: Router
+        private router: Router,
+        private cd: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
@@ -65,7 +73,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     }
 
     showResultWindow() {
-        this.showResult = true;
+        this.res$.next(true);
     }
     checkResult() {
         let selectedHeroPower: number = 0;

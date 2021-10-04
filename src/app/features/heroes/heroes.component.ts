@@ -1,10 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 import { Hero } from 'src/app/models/hero.model';
 import { FilterOptions } from 'src/app/shared/enums/filterOption.enum';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { FilterSettings } from 'src/app/models/filterSettings.model';
 import { heroesUrlService } from 'src/app/shared/services/heroesUrl.service';
 
@@ -12,8 +18,10 @@ import { heroesUrlService } from 'src/app/shared/services/heroesUrl.service';
     selector: 'app-hero',
     templateUrl: './heroes.component.html',
     styleUrls: ['./heroes.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit, OnDestroy {
+    placeholder!: any;
     heroes!: Hero[];
     heroNameInput!: FormGroup;
     popUp: boolean = false;
@@ -25,7 +33,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
     private subscription: Subscription = new Subscription();
     constructor(
         private heroesService: HeroesService,
-        private heroesUrlService: heroesUrlService
+        private heroesUrlService: heroesUrlService,
+        private cd: ChangeDetectorRef
     ) {}
 
     ngOnInit() {
@@ -64,6 +73,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
             )
             .subscribe((res: Hero[]) => {
                 this.heroes = res;
+                this.cd.detectChanges();
             });
     }
     ngOnDestroy(): void {

@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<div class="modal" *ngIf="showResult">
+<div class="modal" *ngIf="res$ | async">
     <div class="innerModal">
         <h4>{{ durration }}</h4>
         <h3>{{ result }}</h3>
