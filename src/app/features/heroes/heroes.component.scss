@@ -51,7 +51,11 @@
     padding: 20px;
 }
 .lettersList {
-    margin-right: 10px;
+    margin: auto;
+    top: 100px;
+    right: 60%;
+    position: absolute;
+    background-color: white;
 }
 .letter {
     list-style: none;
@@ -63,4 +67,7 @@
 }
 .heroesList {
     width: 100%;
+}
+.results {
+    margin: 15px;
 }

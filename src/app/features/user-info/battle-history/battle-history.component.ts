@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { HistoryInfo } from 'src/app/models/history.model';
@@ -10,6 +15,7 @@ import { HistoryService } from 'src/app/shared/services/history.service';
     selector: 'app-battle-history',
     templateUrl: './battle-history.component.html',
     styleUrls: ['./battle-history.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BattleHistoryComponent implements OnInit, OnDestroy {
     historyItems: HistoryInfo[] = [];
@@ -68,5 +74,8 @@ export class BattleHistoryComponent implements OnInit, OnDestroy {
         this.historyService.updateSorting({
             sortType: SortOptions.RESULT,
         });
+    }
+    trackByIndex(_: number, item: HistoryInfo) {
+        return item;
     }
 }

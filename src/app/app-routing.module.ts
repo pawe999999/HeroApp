@@ -1,60 +1,61 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthBattleGurad } from './auth/battleAuth.gurad';
-import { BattleComponent } from './features/battle/battle.component';
-import { HeroInfoComponent } from './features/hero-info/hero-info.component';
-import { HeroesComponent } from './features/heroes/heroes.component';
-import { LogInComponent } from './features/log-in/log-in.component';
-import { SingUpComponent } from './features/sing-up/sing-up.component';
-import { BattleHistoryComponent } from './features/user-info/battle-history/battle-history.component';
-import { HeroesListComponent } from './features/user-info/heroes-list/heroes-list.component';
-import { PowerUpsComponent } from './features/user-info/power-ups/power-ups.component';
-import { UserInfoComponent } from './features/user-info/user-info.component';
 
-const routes: Routes = [
+import { LogInComponent } from './features/log-in/log-in.component';
+
+const appRoutes: Routes = [
     {
         path: 'log-in',
         component: LogInComponent,
     },
-    { path: 'sing-up', component: SingUpComponent },
-    { path: 'hero/:name', component: HeroInfoComponent },
-
+    {
+        path: 'sing-up',
+        loadChildren: () =>
+            import('./features/sing-up/sing-up.module').then(
+                (m) => m.SingUpModule
+            ),
+    },
+    {
+        path: 'hero/:name',
+        loadChildren: () =>
+            import('./features/hero-info/hero-info.module').then(
+                (m) => m.HeroInfoModule
+            ),
+        canActivate: [AuthGuard],
+    },
     {
         path: 'heroes',
-        component: HeroesComponent,
+        loadChildren: () =>
+            import('./features/heroes/heroes.module').then(
+                (m) => m.HeroesModule
+            ),
         canActivate: [AuthGuard],
     },
     {
         path: 'battle',
-        component: BattleComponent,
-        canActivate: [AuthBattleGurad],
+        loadChildren: () =>
+            import('./features/battle/battle.module').then(
+                (m) => m.BattleModule
+            ),
+        canActivate: [AuthGuard, AuthBattleGurad],
     },
 
     {
         path: 'user-info',
-        component: UserInfoComponent,
+        loadChildren: () =>
+            import('./features/user-info/user-info.module').then(
+                (m) => m.UserInfoModule
+            ),
         canActivate: [AuthGuard],
-        children: [
-            {
-                path: 'heroes-list',
-                component: HeroesListComponent,
-            },
-            {
-                path: 'power-ups',
-                component: PowerUpsComponent,
-            },
-            {
-                path: 'battle-history',
-                component: BattleHistoryComponent,
-            },
-        ],
     },
+
     { path: '**', redirectTo: '/heroes' },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -7,6 +13,7 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent implements OnInit, OnDestroy {
     status: boolean = false;
@@ -14,7 +21,8 @@ export class NavComponent implements OnInit, OnDestroy {
     private subscription: Subscription = new Subscription();
     constructor(
         private authService: AuthService,
-        private heroesService: HeroesService
+        private heroesService: HeroesService,
+        private cd: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
@@ -26,6 +34,7 @@ export class NavComponent implements OnInit, OnDestroy {
         this.subscription.add(
             this.heroesService.selectedHeroes$.subscribe((heroes) => {
                 this.heroesStatus = heroes.length !== 0;
+                this.cd.markForCheck();
             })
         );
     }

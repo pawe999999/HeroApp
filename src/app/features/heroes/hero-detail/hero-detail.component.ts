@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Hero } from 'src/app/models/hero.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -7,6 +12,7 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
     selector: 'app-hero-detail',
     templateUrl: './hero-detail.component.html',
     styleUrls: ['./hero-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroDetailComponent implements OnInit {
     selected: boolean = false;

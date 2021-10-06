@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -8,6 +8,7 @@ import { UserInfo } from 'src/app/models/userInfo.model';
     selector: 'app-log-in',
     templateUrl: './log-in.component.html',
     styleUrls: ['./log-in.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogInComponent {
     constructor(private authService: AuthService, private router: Router) {}

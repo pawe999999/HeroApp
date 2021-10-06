@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogInModule } from './features/log-in/log-in.module';
-import { SingUpModule } from './features/sing-up/sing-up.module';
 import { NavModule } from './features/nav/nav.module';
 import { AuthService } from './auth/auth.service';
 import { HeroesModule } from './features/heroes/heroes.module';
@@ -17,6 +16,7 @@ import { HistoryService } from './shared/services/history.service';
 import { PowerUpsService } from './shared/services/powerUps.service';
 import { HeroInfoModule } from './features/hero-info/hero-info.module';
 import { BattleModule } from './features/battle/battle.module';
+import { SingUpModule } from './features/sing-up/sing-up.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -26,12 +26,12 @@ import { BattleModule } from './features/battle/battle.module';
         ReactiveFormsModule,
         HttpClientModule,
         LogInModule,
-        SingUpModule,
         NavModule,
         HeroesModule,
         UserInfoModule,
         HeroInfoModule,
         BattleModule,
+        SingUpModule,
     ],
     providers: [
         AuthService,
