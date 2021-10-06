@@ -34,7 +34,7 @@ export class NavComponent implements OnInit, OnDestroy {
         this.subscription.add(
             this.heroesService.selectedHeroes$.subscribe((heroes) => {
                 this.heroesStatus = heroes.length !== 0;
-                this.cd.detectChanges();
+                this.cd.markForCheck();
             })
         );
     }

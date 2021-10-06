@@ -20,7 +20,7 @@ import { PowerUpsService } from 'src/app/shared/services/powerUps.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BattleComponent implements OnInit, OnDestroy {
-    res$: any = new BehaviorSubject<boolean>(false);
+    res: boolean = false;
     selectedHero!: Hero;
     opponentHero!: Hero;
     powerUps!: PowerUps[];
@@ -73,7 +73,8 @@ export class BattleComponent implements OnInit, OnDestroy {
     }
 
     showResultWindow() {
-        this.res$.next(true);
+        this.res = true;
+        this.cd.markForCheck();
     }
     checkResult() {
         let selectedHeroPower: number = 0;

@@ -21,7 +21,6 @@ import { heroesUrlService } from 'src/app/shared/services/heroesUrl.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit, OnDestroy {
-    placeholder!: any;
     heroes!: Hero[];
     heroNameInput!: FormGroup;
     popUp: boolean = false;
